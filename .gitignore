@@ -1,0 +1,11 @@
+/target
+.DS_Store
+.*.md.html
+~$*
+*.iml
+.settings
+.classpath
+.project
+.idea
+logging*/
+dump.rdb
