@@ -27,6 +27,12 @@ public class A2_AddTwoNumbers {
 
     //int最大值是int的最大值是2147483647
 
+    /**
+     *  因为int,long溢出问题,提交失败
+     * @param l1
+     * @param l2
+     * @return
+     */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         //判断临界条件
         if(l1 == null) return l2;
@@ -56,7 +62,7 @@ public class A2_AddTwoNumbers {
         ListNode listNode_total = null;
         ListNode listNode_temp = null;
         int i=1;
-        if(total == 0) return l1;
+        if(total == 0) return l1; //边界条件
         while (total >= 1){
             int temp = (int) (total % 10);
             total = total / 10;
@@ -72,6 +78,43 @@ public class A2_AddTwoNumbers {
             i++;
         }
         return listNode_total;
+    }
+
+    /**
+     * 模拟进位
+     * 时间复杂度:O(max(m+n))
+     * 空间复杂度:O(max(m+n))
+     * @param l1
+     * @param l2
+     * @return
+     */
+    public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+        //初始化一个头结点
+        ListNode result = new ListNode(0);
+        //进位标志carry
+        int carry = 0;
+        //保存临时节点
+        ListNode listNode1 = l1;
+        ListNode listNode2 = l2;
+        ListNode temp = result;
+
+        while(listNode1 != null || listNode2 != null){
+            int sum = ((listNode1 != null)?  listNode1.val : 0 )+ ((listNode2 != null) ? listNode2.val : 0 ) + carry;
+            if(sum>=10) carry = 1;
+            else carry = 0;
+            // 这就等于把新的元素赋值给了listNode
+            temp.next = new ListNode(sum % 10);
+            temp = temp.next;
+
+            if(listNode1 != null) listNode1 = listNode1.next;
+            if(listNode2 != null) listNode2 = listNode2.next;
+        }
+        //判断最后的进位,边界条件
+        if(carry ==1 ){
+            temp.next = new ListNode(1);
+        }
+
+        return result.next;
     }
 
     public static void main(String[] args) {
@@ -117,7 +160,8 @@ public class A2_AddTwoNumbers {
         node1.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = new ListNode(9);
         node1.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = new ListNode(9);
 
-        ListNode result = new A2_AddTwoNumbers().addTwoNumbers(node, node1);
+        //ListNode result = new A2_AddTwoNumbers().addTwoNumbers(node, node1);
+        ListNode result = new A2_AddTwoNumbers().addTwoNumbers2(node, node1);
         while(result != null){
             System.out.println("result.val = " + result.val);
             result = result.next;
