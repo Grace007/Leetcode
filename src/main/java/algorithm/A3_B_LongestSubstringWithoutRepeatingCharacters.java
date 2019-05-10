@@ -97,7 +97,7 @@ public class A3_B_LongestSubstringWithoutRepeatingCharacters {
         Map map = new HashMap<Character,Integer>();
         for(int i=0,j=0;j<s.length();j++){
             if(map.containsKey(s.charAt(j))){
-                i = Math.max( (int)map.get(s.charAt(j)) ,i); //必须判断,因为可能多次重复,取最大的那个
+                i = Math.max( (Integer) map.get(s.charAt(j)) ,i); //必须判断,因为可能多次重复,取最大的那个
             }
             result = Math.max(result,j-i+1);
             map.put(s.charAt(j),j + 1 ); //如果重复,map会覆盖前面的

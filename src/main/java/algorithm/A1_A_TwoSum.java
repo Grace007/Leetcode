@@ -35,7 +35,7 @@ public class A1_A_TwoSum {
         for (int i = 0; i < nums.length; i++) {
             int temp = target - nums[i];
             if(map.containsKey(temp)) {
-                int a = (int) map.get(temp);
+                int a = (Integer) map.get(temp);
                 if (a != i ){   //防止 5 + 5 = 10 这种情况
                     return new int[] {i,a};
                 }
