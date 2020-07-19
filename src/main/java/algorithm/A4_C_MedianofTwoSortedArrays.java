@@ -176,5 +176,6 @@ public class A4_C_MedianofTwoSortedArrays {
         int[] A = {1, 2};
         int[] B = {3, 4};
         System.out.println(new A4_C_MedianofTwoSortedArrays().findMedianSortedArrays(A, B));
+
     }
 }
